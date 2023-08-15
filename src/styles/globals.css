@@ -1,3 +1,40 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "FLF";
+    src: url("../assets/fonts/sansserifflf/SansSerifFLF.otf") format("opentype");
+    font-weight: 200;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "FLF";
+    src: url("../assets/fonts/sansserifflf/SansSerifBookFLF.otf")
+      format("opentype");
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: "FLF";
+    src: url("../assets/fonts/sansserifflf/SansSerifFLF-Demibold.otf")
+      format("opentype");
+    font-weight: 600;
+    font-style: bold;
+  }
+
+  @font-face {
+    font-family: "FLF";
+    src: url("../assets/fonts/sansserifflf/SansSerifBldFLF.otf")
+      format("opentype");
+    font-weight: 800;
+    font-style: bold;
+  }
+
+  body {
+    @apply font-sans;
+  }
+}
