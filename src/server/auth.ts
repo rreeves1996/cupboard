@@ -54,6 +54,7 @@ export const authOptions: NextAuthOptions = {
   // pages: {
   //   signIn: "/auth/login",
   // },
+  secret: "anystring",
 };
 
 export const getServerAuthSession = (ctx: {
