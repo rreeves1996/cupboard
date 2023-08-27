@@ -8,7 +8,7 @@ export default {
       sans: ["FLF", "sans-serif"],
     },
     colors: {
-      blue: {
+      teal: {
         light: "#9cd3be",
         dark: "#7eac91",
       },
