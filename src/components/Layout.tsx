@@ -6,7 +6,7 @@ export default function Layout({ children }: PropsWithChildren) {
   return (
     <>
       <Navbar />
-      <main className="flex min-h-[calc(100vh-66px)] flex-col items-center bg-offwhite p-4">
+      <main className="flex min-h-[calc(100vh-96px)] flex-col items-center bg-offwhite p-4">
         {children}
       </main>
       <Toaster
