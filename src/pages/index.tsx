@@ -1,12 +1,14 @@
-import { signIn, signOut, useSession } from "next-auth/react";
+import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 import APP_LOGO from "../assets/images/cupboardicon.png";
-import { api } from "~/utils/api";
+import { useEffect } from "react";
+import { useRouter } from "next/router";
+import { Session } from "next-auth";
+import { GetServerSideProps } from "next";
 
 export default function Home() {
-  const { data: sessionData } = useSession();
+  const router = useRouter();
 
   return (
     <>
@@ -16,51 +18,37 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div>
-        {sessionData ? (
-          <Dashboard />
-        ) : (
-          <div>
-            <header>
-              <Image
-                src={APP_LOGO}
-                alt="logo"
-                width={200}
-                objectFit="contain"
-              />
-            </header>
-            <button
-              className="bg-white/10 text-white hover:bg-white/20 rounded-full px-10 py-3 font-semibold no-underline transition"
-              onClick={sessionData ? () => void signOut() : () => void signIn()}
-            >
-              {sessionData ? "Sign out" : "Sign in"}
-            </button>
-          </div>
-        )}
+        <div>
+          <header>
+            <Image src={APP_LOGO} alt="logo" width={200} objectFit="contain" />
+          </header>
+          <button
+            className="bg-white/10 text-white hover:bg-white/20 rounded-full px-10 py-3 font-semibold no-underline transition"
+            onClick={() => void signIn()}
+          >
+            Sign In
+          </button>
+        </div>
       </div>
     </>
   );
 }
 
-function Dashboard() {
-  const { data: sessionData } = useSession();
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const session = await getSession(context);
 
-  const { data: secretMessage } = api.example.getSecretMessage.useQuery(
-    undefined, // no input
-    { enabled: sessionData?.user !== undefined }
-  );
+  if (session) {
+    return {
+      redirect: {
+        destination: "/dashboard",
+        permanent: false,
+      },
+    };
+  }
 
-  return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <p className="text-white text-center text-2xl">
-        {sessionData && <span>Logged in as {sessionData.user?.name}</span>}
-        {secretMessage && <span> - {secretMessage}</span>}
-      </p>
-      <button
-        className="bg-white/10 text-white hover:bg-white/20 rounded-full px-10 py-3 font-semibold no-underline transition"
-        onClick={sessionData ? () => void signOut() : () => void signIn()}
-      >
-        {sessionData ? "Sign out" : "Sign in"}
-      </button>
-    </div>
-  );
-}
+  return {
+    props: {
+      session,
+    },
+  };
+};
