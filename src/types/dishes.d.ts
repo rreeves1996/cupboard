@@ -17,10 +17,10 @@ type DashboardDishData = {
   lowFodmap: boolean;
   nutrition: {
     caloricBreakdown: object;
-    flavonoids: object[];
-    ingredients: object[];
-    nutrients: object[];
-    properties: object[];
+    flavonoids: Array;
+    ingredients: Array;
+    nutrients: Nutrient[];
+    properties: Array;
     weightPerServing: {
       amount: number;
       units: string;
@@ -42,4 +42,11 @@ type DashboardDishData = {
   veryHealthy: boolean;
   veryPopular: boolean;
   weightWatcherSmartPoints: number;
+};
+
+type Nutrient = {
+  name: string;
+  amount: number;
+  unit: string;
+  percentOfDailyNeeds: number;
 };
