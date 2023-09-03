@@ -1,10 +1,11 @@
 import { getSession, signIn, signOut, useSession } from "next-auth/react";
 import Head from "next/head";
 import Image from "next/image";
-import APP_LOGO from "../assets/images/cupboardicon.png";
+import APP_LOGO from "../assets/images/cupboardlogo-teal.png";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { Session } from "next-auth";
+import { PiCookingPotDuotone } from "react-icons/pi";
 import { GetServerSideProps } from "next";
 
 export default function Home() {
@@ -19,9 +20,11 @@ export default function Home() {
       </Head>
       <div>
         <div>
-          <header>
+          <header className="flex items-center">
+            <PiCookingPotDuotone className="text-7xl text-teal-dark" />
             <Image src={APP_LOGO} alt="logo" width={200} objectFit="contain" />
           </header>
+
           <button
             className="bg-white/10 text-white hover:bg-white/20 rounded-full px-10 py-3 font-semibold no-underline transition"
             onClick={() => void signIn()}

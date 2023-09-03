@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import APP_LOGO from "../assets/images/cupboardlogo-green+white.png";
+import APP_LOGO from "../assets/images/cupboardicon.png";
 import Image from "next/image";
 import Link from "next/link";
 import { FaUser } from "react-icons/fa";
@@ -16,7 +16,7 @@ export default function Navbar() {
     <nav className="flex h-24 items-center justify-between bg-teal-light p-4 text-offwhite">
       <div>
         <Link href="/">
-          <Image src={APP_LOGO} alt="logo" height={56} objectFit="contain" />
+          <Image src={APP_LOGO} alt="logo" height={30} objectFit="contain" />
         </Link>
       </div>
 
